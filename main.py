@@ -1,4 +1,3 @@
-#notes: make discount, if place is in yes discount, mines cost. if no discount, giver normal cost.  add date and time. name 3 or more
 #document PLANPLANPLAN
 name_list = []
 price = (0)
@@ -9,14 +8,21 @@ more_people = False
 flight_place = False
 firstc_loop = False
 available_loop = False
+name_loop = False
 yes = {"yes", "y", "yes please daddy"}
 no = {"no", "n", "oh hell nuh"}
 from time import sleep
 while more_people == False:
     print("Hello, and welcome to Waikato Airport.")
-    f = input("What is your name?\n").title()
-    name_list.append(f)
-    print("Nice to meet you {}".format(f))
+    while name_loop == False:
+      f = input("What is your name? Minimum of 3 Characters\n").title()
+      if len(f) < 3:
+        print("Please Enter 3 or more character name")
+        name_loop = False
+      elif len(f) >= 3:
+        name_list.append(f)
+        print("Nice to meet you {}".format(f))
+        name_loop = True
     while flight_place == False:
         place = input(
             "Where will you be flying too? Auckland, Hamilton or Wainuiomata?\n"
@@ -41,7 +47,7 @@ while more_people == False:
             sleep(1)
             flight_place = False
     while available_loop == False:
-        available = input("Are you able to make this flight?\n").lower()
+        available = input("Are you able to make the next flight?\n").lower()
         if available in no:
             available_loop = False
         if available in yes:
@@ -57,6 +63,7 @@ while more_people == False:
                 print("{} seats are left".format(wainui_seats))
                 print("Great, that brings your total too ${}".format(price))
                 available_loop = True
+    #add and show discounts here
 
     while firstc_loop == False:
         firstc = input("Do you want to fly first class?\n").lower()
@@ -77,12 +84,14 @@ while more_people == False:
         flight_place = False
         firstc_loop = False
         available_loop = False
+        name_loop = False
     if others in no:
         print("Thats all then *typing on keyboard noises*")
         sleep(1.5)
         print(f"Thank you {name_list}")
         sleep(1)
         more_people = True
-print("Here is the total cost, ${}".format(price))
+
+#add places, names and costs for each person
 sleep(2)
 print("Have a good flight")
