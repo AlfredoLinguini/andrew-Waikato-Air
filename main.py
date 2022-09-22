@@ -30,21 +30,34 @@ while more_people == False:
         ).title()
         if place == "Auckland":
             place_list.append(place)
-            print("The next available flight for Auckland is 2:30pm tommorow")
+            print("The next available flight for Auckland is 2:30pm Monday")
             price = price + (125)
             auck_seats = auck_seats - (1)
+            print("Your current total cost is ${}".format(price))
+            sleep(2)
+            price = price - (12.5)
+            print("But there is a 10% discount for this ticket. That brings your total price to ${}".format(price))
+            sleep(2)
             flight_place = True
         elif place == "Hamilton":
             place_list.append(place)
-            print("The next available flight for Hamilton is 4pm tommorow")
+            print("The next available flight for Hamilton is 4pm Wednesday")
             price = price + (90)
             ham_seats = ham_seats - (1)
+            print("The total cost is ${}".format(price))
+            sleep(2)
+            print("I can not seem to find a discount for this flight, sorry")
+            sleep(2)
             flight_place = True
         elif place == "Wainuiomata":
             place_list.append(place)
-            print("The next available flight for Wainuiomata is 9am tommorow")
+            print("The next available flight for Wainuiomata is 9am Saturday")
             price = price + (420)
             wainui_seats = wainui_seats - (1)
+            print("Total price is going to be ${}".format(price))
+            sleep(2)
+            price = price - (289.8)
+            print("There is a discount for this flight for 69%. This brings it down to ${}".format(price))
             flight_place = True
         else:
             print("Your opinion is not an option!")
@@ -67,8 +80,6 @@ while more_people == False:
                 print("{} seats are left".format(wainui_seats))
                 print("Great, that brings your total too ${}".format(price))
                 available_loop = True
-    #add and show discounts here
-
     while firstc_loop == False:
         firstc = input("Do you want to fly first class?\n").lower()
         if firstc in yes:
@@ -95,8 +106,6 @@ while more_people == False:
         print("Thank you {}".format(name_list))
         sleep(1)
         more_people = True
-
-
 print("That'll cost ${}".format(price))
 sleep(1)
 print("And here are your flights. {}".format(name_list + place_list))
