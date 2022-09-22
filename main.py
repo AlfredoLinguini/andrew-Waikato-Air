@@ -1,5 +1,6 @@
 #document PLANPLANPLAN
 name_list = []
+place_list = []
 price = (0)
 auck_seats = (164)
 ham_seats = (300)
@@ -15,29 +16,32 @@ from time import sleep
 while more_people == False:
     print("Hello, and welcome to Waikato Airport.")
     while name_loop == False:
-      f = input("What is your name? Minimum of 3 Characters\n").title()
-      if len(f) < 3:
+      name = input("What is your name? Minimum of 3 Characters\n").title()
+      if len(name) < 3:
         print("Please Enter 3 or more character name")
         name_loop = False
-      elif len(f) >= 3:
-        name_list.append(f)
-        print("Nice to meet you {}".format(f))
+      elif len(name) >= 3:
+        name_list.append(name)
+        print("Nice to meet you {}".format(name))
         name_loop = True
     while flight_place == False:
         place = input(
             "Where will you be flying too? Auckland, Hamilton or Wainuiomata?\n"
         ).title()
         if place == "Auckland":
+            place_list.append(place)
             print("The next available flight for Auckland is 2:30pm tommorow")
             price = price + (125)
             auck_seats = auck_seats - (1)
             flight_place = True
         elif place == "Hamilton":
+            place_list.append(place)
             print("The next available flight for Hamilton is 4pm tommorow")
             price = price + (90)
             ham_seats = ham_seats - (1)
             flight_place = True
         elif place == "Wainuiomata":
+            place_list.append(place)
             print("The next available flight for Wainuiomata is 9am tommorow")
             price = price + (420)
             wainui_seats = wainui_seats - (1)
@@ -78,7 +82,7 @@ while more_people == False:
             firstc_loop = False
     others = input("Will there be other people coming with you?\n").lower()
     if others in yes:
-        print(f"Thank you {name_list}")
+        print("Thank you {}".format(name_list))
         sleep(1)
         more_people = False
         flight_place = False
@@ -88,10 +92,13 @@ while more_people == False:
     if others in no:
         print("Thats all then *typing on keyboard noises*")
         sleep(1.5)
-        print(f"Thank you {name_list}")
+        print("Thank you {}".format(name_list))
         sleep(1)
         more_people = True
 
-#add places, names and costs for each person
+
+print("That'll cost ${}".format(price))
+sleep(1)
+print("And here are your flights. {}".format(name_list + place_list))
 sleep(2)
 print("Have a good flight")
