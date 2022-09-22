@@ -10,10 +10,12 @@ flight_place = False
 firstc_loop = False
 available_loop = False
 name_loop = False
+others_loop = False
 yes = {"yes", "y", "yes please daddy"}
 no = {"no", "n", "oh hell nuh"}
 from time import sleep
 while more_people == False:
+    others_loop = False
     print("Hello, and welcome to Waikato Airport.")
     while name_loop == False:
       name = input("What is your name? Minimum of 3 Characters\n").title()
@@ -91,21 +93,27 @@ while more_people == False:
             firstc_loop = True
         else:
             firstc_loop = False
-    others = input("Will there be other people coming with you?\n").lower()
-    if others in yes:
-        print("Thank you {}".format(name_list))
-        sleep(1)
-        more_people = False
-        flight_place = False
-        firstc_loop = False
-        available_loop = False
-        name_loop = False
-    if others in no:
-        print("Thats all then *typing on keyboard noises*")
-        sleep(1.5)
-        print("Thank you {}".format(name_list))
-        sleep(1)
-        more_people = True
+    while others_loop == False:
+      others = input("Will there be other people coming with you?\n").lower()
+      if others in yes:
+          print("Thank you {}".format(name_list))
+          sleep(1)
+          more_people = False
+          flight_place = False
+          firstc_loop = False
+          available_loop = False
+          name_loop = False
+          others_loop = True
+      elif others in no:
+          print("Thats all then *typing on keyboard noises*")
+          sleep(1.5)
+          print("Thank you {}".format(name_list))
+          sleep(1)
+          more_people = True
+          others_loop = True
+      else:
+        print("Can you please answer with a yes or a no")
+        others_loop = False
 print("That'll cost ${}".format(price))
 sleep(1)
 print("And here are your flights. {}".format(name_list + place_list))
