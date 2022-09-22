@@ -69,22 +69,22 @@ while more_people == False:
         available = input("Are you able to make the next flight?\n").lower()
         if available in no:
             available_loop = False
-        if available in yes:
+        elif available in yes:
             if place == "Auckland":
                 print("{} seats are left".format(auck_seats))
                 print("Great, that brings your total too ${}".format(price))
                 available_loop = True
-            elif place == "Hamilton":
+            if place == "Hamilton":
                 print("{} seats are left".format(ham_seats))
                 print("Great, that brings your total too ${}".format(price))
                 available_loop = True
-            elif place == "Wainuiomata":
+            if place == "Wainuiomata":
                 print("{} seats are left".format(wainui_seats))
                 print("Great, that brings your total too ${}".format(price))
                 available_loop = True
-            else:
-              print("Please state a REAL place buddy boy")
-              available_loop = False
+        else:
+          print("Please state a REAL place buddy boy")
+          available_loop = False
     while firstc_loop == False:
         firstc = input("Do you want to fly first class?\n").lower()
         if firstc in yes:
